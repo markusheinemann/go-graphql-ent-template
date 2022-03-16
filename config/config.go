@@ -19,6 +19,7 @@ type config struct {
 		User     string
 		Password string
 		Name     string
+		SSL      string
 	}
 	HttpServer struct {
 		Port string
@@ -52,11 +53,11 @@ func ReadConfig(options ReadConfigOption) {
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
-		log.Fatalf("could not read configuration: %v\n", err)
+		log.Fatalf("could not read configuration: %v", err)
 	}
 
 	if err := viper.Unmarshal(&Config); err != nil {
-		log.Fatalf("could not unmarshal config: %v\n", err)
+		log.Fatalf("could not unmarshal config: %v", err)
 		os.Exit(1)
 	}
 }
