@@ -4,8 +4,8 @@ import (
 	"time"
 
 	"entgo.io/ent"
-	"entgo.io/ent/dialect"
 	"entgo.io/ent/schema/field"
+	"gitlab.com/trustify/core/ent/schema/ulid"
 )
 
 // User holds the schema definition for the User entity.
@@ -16,16 +16,17 @@ type User struct {
 // Fields of the User.
 func (User) Fields() []ent.Field {
 	return []ent.Field{
+		field.String("id").
+			GoType(ulid.ID("")).
+			DefaultFunc(func() ulid.ID {
+				return ulid.MustNew("")
+			}),
 		field.String("first_name").NotEmpty(),
 		field.String("last_name").NotEmpty(),
 		field.String("email").NotEmpty().Unique(),
 		field.String("password"),
-		field.Time("created_at").Default(time.Now()).SchemaType(map[string]string{
-			dialect.Postgres: "timestamp DEFAULt now()",
-		}).Immutable(),
-		field.Time("updated_at").Default(time.Now()).SchemaType(map[string]string{
-			dialect.Postgres: "timestamp DEFAULT now()",
-		}),
+		field.Time("created_at").Default(time.Now()).Immutable(),
+		field.Time("updated_at").Default(time.Now()),
 	}
 }
 

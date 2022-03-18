@@ -10,6 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"gitlab.com/trustify/core/ent/schema/ulid"
 	"gitlab.com/trustify/core/ent/user"
 )
 
@@ -68,6 +69,20 @@ func (uc *UserCreate) SetUpdatedAt(t time.Time) *UserCreate {
 func (uc *UserCreate) SetNillableUpdatedAt(t *time.Time) *UserCreate {
 	if t != nil {
 		uc.SetUpdatedAt(*t)
+	}
+	return uc
+}
+
+// SetID sets the "id" field.
+func (uc *UserCreate) SetID(u ulid.ID) *UserCreate {
+	uc.mutation.SetID(u)
+	return uc
+}
+
+// SetNillableID sets the "id" field if the given value is not nil.
+func (uc *UserCreate) SetNillableID(u *ulid.ID) *UserCreate {
+	if u != nil {
+		uc.SetID(*u)
 	}
 	return uc
 }
@@ -151,6 +166,10 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultUpdatedAt
 		uc.mutation.SetUpdatedAt(v)
 	}
+	if _, ok := uc.mutation.ID(); !ok {
+		v := user.DefaultID()
+		uc.mutation.SetID(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -199,8 +218,13 @@ func (uc *UserCreate) sqlSave(ctx context.Context) (*User, error) {
 		}
 		return nil, err
 	}
-	id := _spec.ID.Value.(int64)
-	_node.ID = int(id)
+	if _spec.ID.Value != nil {
+		if id, ok := _spec.ID.Value.(*ulid.ID); ok {
+			_node.ID = *id
+		} else if err := _node.ID.Scan(_spec.ID.Value); err != nil {
+			return nil, err
+		}
+	}
 	return _node, nil
 }
 
@@ -210,11 +234,15 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_spec = &sqlgraph.CreateSpec{
 			Table: user.Table,
 			ID: &sqlgraph.FieldSpec{
-				Type:   field.TypeInt,
+				Type:   field.TypeString,
 				Column: user.FieldID,
 			},
 		}
 	)
+	if id, ok := uc.mutation.ID(); ok {
+		_node.ID = id
+		_spec.ID.Value = &id
+	}
 	if value, ok := uc.mutation.FirstName(); ok {
 		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
 			Type:   field.TypeString,
@@ -308,10 +336,6 @@ func (ucb *UserCreateBulk) Save(ctx context.Context) ([]*User, error) {
 				}
 				mutation.id = &nodes[i].ID
 				mutation.done = true
-				if specs[i].ID.Value != nil {
-					id := specs[i].ID.Value.(int64)
-					nodes[i].ID = int(id)
-				}
 				return nodes[i], nil
 			})
 			for i := len(builder.hooks) - 1; i >= 0; i-- {

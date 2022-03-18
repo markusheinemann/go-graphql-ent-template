@@ -9,7 +9,7 @@ import (
 	"runtime"
 
 	"github.com/spf13/viper"
-	"gitlab.com/trustify/core/pgk/util/environment"
+	"gitlab.com/trustify/core/pkg/util/environment"
 )
 
 type config struct {

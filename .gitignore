@@ -1,3 +1,6 @@
+
+tmp/
+
 # Docker Volumes
 volumes
 

@@ -4,6 +4,8 @@ package user
 
 import (
 	"time"
+
+	"gitlab.com/trustify/core/ent/schema/ulid"
 )
 
 const (
@@ -59,4 +61,6 @@ var (
 	DefaultCreatedAt time.Time
 	// DefaultUpdatedAt holds the default value on creation for the "updated_at" field.
 	DefaultUpdatedAt time.Time
+	// DefaultID holds the default value on creation for the "id" field.
+	DefaultID func() ulid.ID
 )
