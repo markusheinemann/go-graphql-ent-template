@@ -52,3 +52,6 @@ models:
       - github.com/99designs/gqlgen/graphql.Int
       - github.com/99designs/gqlgen/graphql.Int64
       - github.com/99designs/gqlgen/graphql.Int32
+  Node:
+    model:
+      - gitlab.com/trustify/core/pkg/entity/model.Node

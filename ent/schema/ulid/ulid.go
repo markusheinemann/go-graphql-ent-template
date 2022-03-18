@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/oklog/ulid/v2"
@@ -28,7 +29,7 @@ func newULID() ulid.ULID {
 
 // MustNew returns a new ULID for time.Now() given a prefix. This uses the default entropy source
 func MustNew(prefix string) ID {
-	return ID(prefix + fmt.Sprint(newULID()))
+	return ID(strings.ToLower(prefix + fmt.Sprint(newULID())))
 }
 
 // UnmarshalGQL implements the graphql.Unmarsahller interface

@@ -6,6 +6,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/schema/field"
 	"gitlab.com/trustify/core/ent/schema/ulid"
+	"gitlab.com/trustify/core/pkg/const/globalid"
 )
 
 // User holds the schema definition for the User entity.
@@ -19,7 +20,7 @@ func (User) Fields() []ent.Field {
 		field.String("id").
 			GoType(ulid.ID("")).
 			DefaultFunc(func() ulid.ID {
-				return ulid.MustNew("")
+				return ulid.MustNew(globalid.New().User.Prefix)
 			}),
 		field.String("first_name").NotEmpty(),
 		field.String("last_name").NotEmpty(),
