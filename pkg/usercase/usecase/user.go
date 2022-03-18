@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"errors"
 
 	"gitlab.com/trustify/core/pkg/entity/model"
 	"gitlab.com/trustify/core/pkg/usercase/repository"
@@ -33,6 +34,15 @@ func (u *user) List(ctx context.Context, after *model.Cursor, first *int, before
 }
 
 func (u *user) Create(ctx context.Context, input model.CreateUserInput) (*model.User, error) {
+	ex, err := u.userRepository.EmailExists(ctx, input.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	if ex {
+		return nil, errors.New("user with the given email already exists")
+	}
+
 	return u.userRepository.Create(ctx, input)
 }
 

@@ -33,3 +33,7 @@ func (r *userRepository) Create(ctx context.Context, input model.CreateUserInput
 func (r *userRepository) Update(ctx context.Context, input model.UpdateUserInput) (*model.User, error) {
 	return r.client.User.UpdateOneID(input.ID).SetInput(input).SetUpdatedAt(time.Now()).Save(ctx)
 }
+
+func (r *userRepository) EmailExists(ctx context.Context, email string) (bool, error) {
+	return r.client.User.Query().Where(user.Email(email)).Exist(ctx)
+}
