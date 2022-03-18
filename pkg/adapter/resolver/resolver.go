@@ -5,6 +5,7 @@ import (
 	"gitlab.com/trustify/core/ent"
 	"gitlab.com/trustify/core/graph/generated"
 	"gitlab.com/trustify/core/pkg/adapter/controller"
+	"gitlab.com/trustify/core/pkg/adapter/directives"
 )
 
 // This file will not be regenerated automatically.
@@ -19,10 +20,13 @@ type Resolver struct {
 
 // NewSchema creates NewExecutableSchema
 func NewSchema(client *ent.Client, controller controller.Controller) graphql.ExecutableSchema {
-	return generated.NewExecutableSchema(generated.Config{
+	c := generated.Config{
 		Resolvers: &Resolver{
 			client:     client,
 			controller: controller,
 		},
-	})
+	}
+	c.Directives.Binding = directives.Binding
+
+	return generated.NewExecutableSchema(c)
 }

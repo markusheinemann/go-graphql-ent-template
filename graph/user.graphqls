@@ -24,17 +24,17 @@ extend type Query {
 }
 
 input CreateUserInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  password: String!
+  firstName: String! @binding(constraint: "required,max=255")
+  lastName: String! @binding(constraint: "required,max=255")
+  email: String! @binding(constraint: "required,email")
+  password: String! @binding(constraint: "required,min=8,max=255")
 }
 
 input UpdateUserInput {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  email: String!
+  id: ID! @binding(constraint: "required")
+  firstName: String! @binding(constraint: "required,max=255")
+  lastName: String! @binding(constraint: "required,max=255")
+  email: String! @binding(constraint: "required,email")
 }
 
 extend type Mutation {

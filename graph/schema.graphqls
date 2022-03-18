@@ -1,6 +1,9 @@
 scalar Cursor
 scalar Time
 
+directive @goField(forceResolver: String, name: String) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @binding(constraint: String!) on INPUT_FIELD_DEFINITION | ARGUMENT_DEFINITION
+
 interface Node {
     id: ID!
 }
