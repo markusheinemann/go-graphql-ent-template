@@ -24,6 +24,10 @@ func (r *queryResolver) User(ctx context.Context, id *ulid.ID) (*ent.User, error
 	return r.controller.User.Get(ctx, id)
 }
 
+func (r *queryResolver) Users(ctx context.Context, after *ent.Cursor, first *int, before *ent.Cursor, last *int) (*ent.UserConnection, error) {
+	return r.controller.User.List(ctx, after, first, before, last)
+}
+
 func (r *userResolver) CreatedAt(ctx context.Context, obj *ent.User) (string, error) {
 	return datetime.FormatDate(obj.CreatedAt), nil
 }
