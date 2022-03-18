@@ -4,8 +4,10 @@ import "gitlab.com/trustify/core/ent"
 
 type User = ent.User
 
+type UserConnection = ent.UserConnection
+
 type CreateUserInput = ent.CreateUserInput
 
 type UpdateUserInput = ent.UpdateUserInput
 
-type UserConnection = ent.UserConnection
+type UserWhereInput = ent.UserWhereInput

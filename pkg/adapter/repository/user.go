@@ -22,8 +22,8 @@ func (r *userRepository) Get(ctx context.Context, id *model.ID) (*model.User, er
 	return r.client.User.Query().Where(user.IDEQ(*id)).Only(ctx)
 }
 
-func (r *userRepository) List(ctx context.Context, after *model.Cursor, first *int, before *model.Cursor, last *int) (*model.UserConnection, error) {
-	return r.client.User.Query().Paginate(ctx, after, first, before, last)
+func (r *userRepository) List(ctx context.Context, after *model.Cursor, first *int, before *model.Cursor, last *int, where *model.UserWhereInput) (*model.UserConnection, error) {
+	return r.client.User.Query().Paginate(ctx, after, first, before, last, ent.WithUserFilter(where.Filter))
 }
 
 func (r *userRepository) Create(ctx context.Context, input model.CreateUserInput) (*model.User, error) {
