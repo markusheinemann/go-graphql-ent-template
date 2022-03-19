@@ -1,5 +1,8 @@
-
+# air output
 tmp/
+
+# code coverage
+coverage/
 
 # Docker Volumes
 volumes
