@@ -10,20 +10,20 @@ migrate: export APP_ENV=dev
 migrate: ## run database migrations
 	go run ./cmd/migration
 
-setup_test_db: ## setup database for testing
+test_setup_db: ## setup database for testing
 	./scripts/init_db_test.sh
-
-test_repo_cov: ## run repository tests WITHOUT coverage
+test: ## run repository tests WITHOUT coverage
 	go test ./pkg/adapter/repository
-
-test_repo_cov: ## run repository tests and gerate coverage
+test_cov: ## run repository tests and gerate coverage
 	rm -r ./coverage
 	mkdir ./coverage
 	go test ./pkg/adapter/repository -cover -coverprofile=coverage/repo.out
 	go tool cover -html=coverage/repo.out -o coverage/repo.html
 
-setup_e2e_db: ## setup database for e2e testing
+e2e_setup_db: ## setup database for e2e testing
 	./scripts/init_db_e2e.sh
+e2e: ## run End-To-End tests
+	go test ./test/e2e/...
 
 start: ## start development server
 	air
