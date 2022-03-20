@@ -4,6 +4,9 @@ tmp/
 # code coverage
 coverage/
 
+# generated docs
+docs/
+
 # Docker Volumes
 volumes
 

@@ -27,3 +27,8 @@ e2e: ## run End-To-End tests
 
 start: ## start development server
 	air
+
+docs: ## generate graphql schema docs
+	@echo "\033[0;33mMake sure you have run gqlgen and restart the server\033[0m"
+	graphdoc -e http://localhost:8080/query -o ./docs/schema --force
+	@echo "\033[0;32mOpen file://${PWD}/docs/schema/index.html in the browser to view the docs \033[0m"
