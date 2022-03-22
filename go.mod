@@ -5,7 +5,7 @@ go 1.17
 require (
 	entgo.io/contrib v0.2.0
 	entgo.io/ent v0.10.1
-	github.com/99designs/gqlgen v0.17.1
+	github.com/99designs/gqlgen v0.17.2
 	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/go-playground/locales v0.14.0
 	github.com/go-playground/universal-translator v0.18.0
