@@ -5,7 +5,7 @@ go 1.17
 require (
 	entgo.io/contrib v0.2.0
 	entgo.io/ent v0.10.1
-	github.com/99designs/gqlgen v0.17.1
+	github.com/99designs/gqlgen v0.17.12
 	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/go-playground/locales v0.14.0
 	github.com/go-playground/universal-translator v0.18.0
@@ -15,15 +15,15 @@ require (
 	github.com/lib/pq v1.10.4
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/spf13/viper v1.10.1
-	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942
-	github.com/vektah/gqlparser/v2 v2.4.1
+	github.com/stretchr/testify v1.7.1
+	github.com/vektah/gqlparser/v2 v2.4.6
 	github.com/vmihailenco/msgpack/v5 v5.3.5
 )
 
 require (
 	ariga.io/atlas v0.3.7-0.20220303204946-787354f533c3 // indirect
 	github.com/agext/levenshtein v1.2.1 // indirect
-	github.com/agnivade/levenshtein v1.1.0 // indirect
+	github.com/agnivade/levenshtein v1.1.1 // indirect
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
@@ -70,12 +70,12 @@ require (
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/zclconf/go-cty v1.8.0 // indirect
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
-	golang.org/x/mod v0.5.1 // indirect
+	golang.org/x/mod v0.6.0-dev.0.20220106191415-9b9b3d81d5e3 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
 	golang.org/x/sys v0.0.0-20211210111614-af8b64212486 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20201208040808-7e3f01d25324 // indirect
-	golang.org/x/tools v0.1.9 // indirect
+	golang.org/x/tools v0.1.10 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
