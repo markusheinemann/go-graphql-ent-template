@@ -11,7 +11,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0
 	github.com/go-playground/validator/v10 v10.10.1
 	github.com/hashicorp/go-multierror v1.1.1
-	github.com/labstack/echo/v4 v4.7.2
+	github.com/labstack/echo/v4 v4.9.0
 	github.com/lib/pq v1.10.4
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/spf13/viper v1.10.1
